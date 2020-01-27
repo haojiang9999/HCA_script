@@ -30,8 +30,11 @@ $ ssh-keygen -t rsa -C "youremail@example.com"
 用记事本打开id_rsa.pub,复制其中的内容，打开并登陆github。
 
 在个人设置（Settings）中找到SSH设置，点击添加sshkey（new ssh key）
+
 5、在github上新建一个仓库（repository）
-7、将本地仓库同步到空远程仓库（repository）
+
+6、将本地仓库同步到空远程仓库（repository）
+
 https://stackoverflow.com/questions/10904339/github-fatal-remote-origin-already-exists
 ```
 ## 1.If the repository is empty
@@ -44,6 +47,7 @@ $ git remote set-url origin git@github.com:ppreyer/first_app.git
 $ git pull --rebase origin master
 $ git push -u origin master
 ```
+
 7、状态查询命令
 ```
 git status
