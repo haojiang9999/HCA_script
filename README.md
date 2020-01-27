@@ -19,6 +19,8 @@ $ vim hello.txt ## create a test file
 $ git add hello.txt //将hello.txt文件添加到仓库
 $ gti commit -m "add hello.txt"  //把文件提交到仓库，-m 之后的"add hello.txt"是对这次操作自己添加的描述，可以随便写.
 $ git status   //查看仓库状态
+### 把文件添加到版本库中，使用命令 git add .添加到暂存区里面去，不要忘记后面的小数点“.”，意为添加文件夹下的所有文件
+git add .
 ```
 4、设置ssh（仅首次使用需要配置）
 ```
