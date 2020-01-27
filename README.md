@@ -54,3 +54,12 @@ $ git push -u origin master
 ```
 git status
 ```
+8、Example
+```
+$ git add ./1_R_script/
+$ git status
+$ git commit -m "My HCA R script"
+$ git remote add origin git@github.com:haojiang9999/HCA_script.git
+$ git pull --rebase origin master
+$ git push -u origin master
+```
