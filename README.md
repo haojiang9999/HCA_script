@@ -63,3 +63,8 @@ $ git remote add origin git@github.com:haojiang9999/HCA_script.git
 $ git pull --rebase origin master
 $ git push -u origin master
 ```
+9、Add all R script in a folder
+```
+### Need to convert file location to ""
+find ./ -name *.R|awk '{ print "\""$0"\""}'|xargs git add
+```
