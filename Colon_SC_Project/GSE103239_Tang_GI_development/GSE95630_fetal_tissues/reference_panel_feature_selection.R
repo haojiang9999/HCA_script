@@ -1,0 +1,15 @@
+test <- log10(refPanel.filtered)
+head(test)
+genesMedian<- apply(test, 1, median)
+#log2(refPanel)
+test2 <- apply(test, 2, function(x) x/genesMedian)
+table(rowSums(test2 > 1.5)>0) # too many
+test3 <- test[rowSums(test2 > 2)>0,]
+head(test3)
+# filter genes by Coefficient-Variance(CV)
+genesCV <- apply(refPanel, 1, function(x) {sd(x) / mean(x)})
+summary(genesCV)
+head(genesCV)
+Top2000 <- head(sort(genesCV, decreasing = T), 2000)
+tail(Top2000)
+names(Top2000)

@@ -1,0 +1,5 @@
+RfilesPath <- list.files("/data8t_4/JH/MyJobs/test/GOEnrich/R")
+Rfiles <- file.path("/data8t_4/JH/MyJobs/test/GOEnrich/R", RfilesPath)
+source(Rfiles[1])
+#sapply(Rfiles, source())
+sapply(Rfiles,source,.GlobalEnv)
