@@ -67,4 +67,10 @@ $ git push -u origin master
 ```
 ### Need to convert file location to ""
 find ./ -name *.R|awk '{ print "\""$0"\""}'|xargs git add
+git stash  # wanted to keep the change
+git pull --rebase origin master
+git stash pop  # After pulling, you would then do and your changes would be reapplied.
+git push -u origin master
+```
+
 ```
