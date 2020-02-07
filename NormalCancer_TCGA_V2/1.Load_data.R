@@ -1,9 +1,9 @@
 #### 1.Load data
 #### read TCGA_COAD data ####
-COAD_UCSC_Toil_tpm_dataset <- readRDS("/data8t_4/JH/MyJobs/Read_dataset/UCSC_Toil/COAD_UCSC_Toil_tpm_dataset.rds")
+COAD_UCSC_Toil_tpm_dataset <- readRDS("/data8t_4/JH/MyJobs/Read_dataset/UCSC_Toil/COAD_UCSC_Toil_tpm_dataset_merge.syn2623706.rds")
 COAD_RSEM_gene_tpm <- COAD_UCSC_Toil_tpm_dataset$COAD.RSEM.gene.tpm
 gencode.v23.annotation <- COAD_UCSC_Toil_tpm_dataset$gencode.v23.annotation
-COAD.pheno <- COAD_UCSC_Toil_tpm_dataset$COAD.pheno
+COAD.pheno <- COAD_UCSC_Toil_tpm_dataset$COAD.pheno.merge.syn2623706
 #head(gencode.v23.annotation)
 ## convert ensembleID to symbol 
 geneMatch <- match(rownames(COAD_RSEM_gene_tpm),gencode.v23.annotation$V1)
