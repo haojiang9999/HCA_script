@@ -5,7 +5,7 @@ Tang.Normal.embryo.ref <- readRDS("/data8t_4/JH/MyJobs/Normal_cell_reference/Ste
 Lanner.Preim.embryo.ref <- readRDS("/data8t_4/JH/MyJobs/Normal_cell_reference/Step1_Normal_cell_reference_panel_construction/Lanner.Preim.embryo.ref.rds")
 Zemin.CRC.Tcell.ref <- readRDS("/data8t_4/JH/MyJobs/Normal_cell_reference/Step1_Normal_cell_reference_panel_construction/Zemin.CRC.Tcell.ref.rds")
 Zemin.CRC.Tcell.Cluster.ref <- readRDS("/data8t_4/JH/MyJobs/Normal_cell_reference/Step1_Normal_cell_reference_panel_construction/Zemin.CRC.Tcell.Cluster.ref.rds")
-
+RCA.CRC.nonEpi.ref <- readRDS("/data8t_4/JH/MyJobs/Normal_cell_reference/Step1_Normal_cell_reference_panel_construction/RCA.CRC.nonEpi.ref.rds")
 #### Gene names
 #GeneNames.Tang.Adult.colon <- rownames(Tang.Adult.colon.ref)
 #GeneNames.Tang.Fetal.GI <- rownames(Tang.Fetal.GI.ref)

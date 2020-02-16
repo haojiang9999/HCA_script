@@ -1,6 +1,7 @@
 #### 1.1Read_TCGA_dataset.R
 COAD_UCSC_Toil_tpm_dataset_merge.syn2623706 <- readRDS("/data8t_4/JH/MyJobs/Read_dataset/UCSC_Toil/COAD_UCSC_Toil_tpm_dataset_merge.syn2623706.rds")
 COAD.pheno <- COAD_UCSC_Toil_tpm_dataset_merge.syn2623706$COAD.pheno
+COAD.RSEM.gene.tpm <- COAD_UCSC_Toil_tpm_dataset_merge.syn2623706$COAD.RSEM.gene.tpm
 COAD.pheno$X_PATIENT
 COAD.pheno.merge.syn2623706 <- COAD_UCSC_Toil_tpm_dataset_merge.syn2623706$COAD.pheno.merge.syn2623706
 

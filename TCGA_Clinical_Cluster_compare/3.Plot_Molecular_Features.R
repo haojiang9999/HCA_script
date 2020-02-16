@@ -1,5 +1,13 @@
 #### 3.Plot_Seperate_clinical_info
 library(ggplot2)
+############## Mutation count ####################
+Plot.df$totalMut
+ggplot(data=subset(Plot.df, !is.na(totalMut)), aes(x = dynamicColors, y = totalMut,fill=dynamicColors)) + 
+  geom_boxplot() + scale_fill_manual(values= alpha(c("#999999", "#E69F00", "#56B4E9","#76EE00","#9A32CD"),0.6)) # transparency
+############## SCNA count (by genes) #############
+Plot.df$SCNA.gene.counts
+ggplot(data=subset(Plot.df, !is.na(SCNA.gene.counts)), aes(x = dynamicColors, y = SCNA.gene.counts,fill=dynamicColors)) + 
+  geom_boxplot() + scale_fill_manual(values= alpha(c("#999999", "#E69F00", "#56B4E9","#76EE00","#9A32CD"),0.6)) # transparency
 ############## MSI Porpotion #####################
 # Plot stack order
 Plot.df$msi <- relevel(Plot.df$msi, 'mss')
@@ -8,10 +16,16 @@ ggplot(data=subset(Plot.df, !is.na(msi)), aes(x = dynamicColors, fill = msi)) +
   geom_bar(position = "fill") + theme_minimal()+
   scale_fill_manual(values= alpha(c("#999999", "#E69F00", "#56B4E9"),0.6)) # transparency
 
+############## Gender #############################
+ggplot(data = Plot.df, aes(x = dynamicColors, fill = gender.x)) +  
+  geom_bar(position = "fill") + theme_minimal()+
+  scale_fill_manual(values= alpha(c("#999999", "#E69F00", "#56B4E9"),0.6)) # transparency
 
 ############# CIMP ##############################
 # remove NA
 #Plot.df$msi <- relevel(Plot.df$msi, 'mss')
+table(!is.na(Plot.df$cimp))
+Plot.df$cimp <- factor(Plot.df$cimp, levels = c("CIMP.Neg", "CIMP.Low", "CIMP.High"))
 # Remove NA value
 ggplot(data=subset(Plot.df, !is.na(cimp)), aes(x = dynamicColors, fill = cimp)) + 
   geom_bar(position = "fill") + theme_minimal()+
@@ -28,9 +42,6 @@ Plot.df$braf_mut <- as.factor(Plot.df$braf_mut)
 ggplot(data=subset(Plot.df, !is.na(braf_mut)), aes(x = dynamicColors, fill = braf_mut)) + 
   geom_bar(position = "fill") + theme_minimal()+
   scale_fill_manual(values= alpha(c("#999999", "#E69F00", "#56B4E9"),0.6)) # transparency
-
-
-############ Tumor site location ###############
 
 ########### Gene Mutation analysis #############
 ## APC
@@ -53,3 +64,8 @@ Plot.df$TP53 <- as.factor(Plot.df$TP53)
 ggplot(data=subset(Plot.df, !is.na(TP53)), aes(x = dynamicColors, fill = TP53)) + 
   geom_bar(position = "fill") + theme_minimal()+
   scale_fill_manual(values= alpha(c("#999999", "#E69F00", "#56B4E9"),0.6)) # transparency
+
+############### Tumor cell purity ###############
+
+Plot.df$purity
+ggplot(Plot.df) + geom_boxplot(aes(x=dynamicColors, y=purity, color=dynamicColors)) 

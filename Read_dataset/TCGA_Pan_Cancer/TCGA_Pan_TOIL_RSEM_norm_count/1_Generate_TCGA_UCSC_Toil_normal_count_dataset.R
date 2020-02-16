@@ -47,4 +47,34 @@ for(i in TCGA.cancer.types){
   names(TCGA_UCSC_Toil_tpm)<-c(paste0(i,".RSEM.gene.norm_count_round"),pheno = paste0(i,".pheno"), "gencode.v23.annotation")
   saveRDS(TCGA_UCSC_Toil_tpm, file = paste0(i,"_UCSC_Toil_norm_count_dataset.rds"))
 }
+################ Log2(x+1) #######################
+#log2(norm_count+1)
+# https://xenabrowser.net/datapages/?dataset=tcga_RSEM_Hugo_norm_count&host=https%3A%2F%2Ftoil.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443
+# Data (file names: *.rsem.genes.norm_counts.hugo.tab) are log2(x+1) transformed, and combined
 
+for(i in TCGA.cancer.types){
+  ### Step1 separate data by cancer types ###
+  TCGA_Index <- phenotype_sp$cancer.type.abbreviation == i
+  TCGA.pheno <- phenotype_sp[TCGA_Index,]
+  #### Step2 Convert and add rownames to pheno table #### 
+  TCGA.sampleID <- as.character(TCGA.pheno$sample)
+  TCGA.sampleID <- gsub("-",".",TCGA.sampleID)
+  rownames(TCGA.pheno) <- TCGA.sampleID
+  ## Step3 Extract expression data by pheno data
+  TCGA.sampleID.exp <- colnames(tcga_RSEM_norm_count) %in% TCGA.sampleID
+  TCGA_RSEM_gene  <- tcga_RSEM_norm_count[,TCGA.sampleID.exp]
+  TCGA.pheno.exp <- TCGA.pheno[colnames(TCGA_RSEM_gene),]
+  ## Step4 Reverse log2(x+1) expression
+  #TCGA_RSEM_gene<-apply(TCGA_RSEM_gene,2, function(x){
+  #  2^x - 1
+  #})
+  #TCGA_RSEM_gene <- round(TCGA_RSEM_gene)
+  # replace negative value to zeros
+  #TCGA_RSEM_gene[TCGA_RSEM_gene <0 ] <- 0 
+  ## Step5 Biuld TCGA data sets
+  TCGA_UCSC_Toil_RSEM <- list(exp = TCGA_RSEM_gene,
+                             pheno = TCGA.pheno.exp,
+                             gencode.v23.annotation = gencode.v23.annotation)
+  names(TCGA_UCSC_Toil_RSEM)<-c(paste0(i,".RSEM.gene.norm_count_Log2(x+1)"),pheno = paste0(i,".pheno"), "gencode.v23.annotation")
+  saveRDS(TCGA_UCSC_Toil_RSEM, file = paste0(i,"_UCSC_RSEM_norm_count_Log2(x+1)_hugo_dataset.rds"))
+}
