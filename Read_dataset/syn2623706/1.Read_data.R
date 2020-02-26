@@ -1,4 +1,5 @@
 #### 1.Read expressio data 
+## Paper:The consensus molecular subtypes of colorectal cancer
 formatted_crc_data <- read.table("/stor/jianghao/Synapse/classifier/formatted_crc_data.txt")
 dim(formatted_crc_data)
 formatted_crc_data[1:5,1:5]

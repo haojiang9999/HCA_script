@@ -1,6 +1,8 @@
 #### 1_1_Generate_Xena_TCGA_pancancer_Immune_subtype.R
 #### 1.read Subtype_Immune_Model_Based.txt.gz ####
 #### https://xenabrowser.net/datapages/?dataset=Subtype_Immune_Model_Based.txt&host=https%3A%2F%2Fpancanatlas.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443
+## Paper:Co-expression modules identified from published immune signatures reveal five distinct immune subtypes in breast cancer.
+## doi: 10.1007/s10549-016-4041-3.
 filePath <- "/stor/jianghao/Xena/TCGA_Pan_Cancer/Phenotype/"
 Subtype_Immune_Model_Based <- read.delim(paste0(filePath,"Subtype_Immune_Model_Based.txt.gz"))
 TCGA.sampleID <- as.character(Subtype_Immune_Model_Based$sample)

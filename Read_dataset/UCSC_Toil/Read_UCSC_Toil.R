@@ -1,8 +1,11 @@
 #### 1.read RNA-seq expression data sets ####
+#https://xenabrowser.net/datapages/?dataset=tcga_RSEM_gene_tpm&host=https%3A%2F%2Ftoil.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443
 filePath <- "/stor/jianghao/Xena/UCSC_Toil/TCGA_Pan_Cancer_PANCAN/gene_expression_RNAseq/tcga_RSEM_gene_tpm/tcga_RSEM_gene_tpm.gz"
 #### Data (file names: *.rsem_genes.results) are downloaded, 
 #    tpm values are extracted, log2(x+0.001) transformed
 tcga_RSEM_gene_tpm <- read.table(filePath, header = T)
+library(jsonlite)
+tcga_RSEM_gene_tpm.metadata <- read_json("/stor/jianghao/Xena/UCSC_Toil/TCGA_Pan_Cancer_PANCAN/gene_expression_RNAseq/tcga_RSEM_gene_tpm/tcga_RSEM_gene_tpm.json")
 ## add first column to rownames
 rownames(tcga_RSEM_gene_tpm) <- tcga_RSEM_gene_tpm$sample
 # remove first columns

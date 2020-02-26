@@ -2,22 +2,18 @@
 library(ggplot2)
 ############## Mutation count ####################
 Plot.df$totalMut
-ggplot(data=subset(Plot.df, !is.na(totalMut)), aes(x = dynamicColors, y = totalMut,fill=dynamicColors)) + 
-  geom_boxplot() + scale_fill_manual(values= alpha(c("#999999", "#E69F00", "#56B4E9","#76EE00","#9A32CD"),0.6)) # transparency
+ggplot(data=subset(Plot.df, !is.na(totalMut))) + 
+  geom_boxplot(aes(x = dynamicColors, y = totalMut,fill=dynamicColors)) + 
+  scale_fill_manual(values= c("blue","brown","turquoise","yellow"))
 ############## SCNA count (by genes) #############
 Plot.df$SCNA.gene.counts
 ggplot(data=subset(Plot.df, !is.na(SCNA.gene.counts)), aes(x = dynamicColors, y = SCNA.gene.counts,fill=dynamicColors)) + 
-  geom_boxplot() + scale_fill_manual(values= alpha(c("#999999", "#E69F00", "#56B4E9","#76EE00","#9A32CD"),0.6)) # transparency
+  geom_boxplot() + scale_fill_manual(values= c("blue","brown","turquoise","yellow"))
 ############## MSI Porpotion #####################
 # Plot stack order
 Plot.df$msi <- relevel(Plot.df$msi, 'mss')
 # Remove NA value
 ggplot(data=subset(Plot.df, !is.na(msi)), aes(x = dynamicColors, fill = msi)) + 
-  geom_bar(position = "fill") + theme_minimal()+
-  scale_fill_manual(values= alpha(c("#999999", "#E69F00", "#56B4E9"),0.6)) # transparency
-
-############## Gender #############################
-ggplot(data = Plot.df, aes(x = dynamicColors, fill = gender.x)) +  
   geom_bar(position = "fill") + theme_minimal()+
   scale_fill_manual(values= alpha(c("#999999", "#E69F00", "#56B4E9"),0.6)) # transparency
 
@@ -68,4 +64,12 @@ ggplot(data=subset(Plot.df, !is.na(TP53)), aes(x = dynamicColors, fill = TP53)) 
 ############### Tumor cell purity ###############
 
 Plot.df$purity
-ggplot(Plot.df) + geom_boxplot(aes(x=dynamicColors, y=purity, color=dynamicColors)) 
+ggplot(Plot.df) + geom_boxplot(aes(x=dynamicColors, y=purity, fill=dynamicColors))+
+  scale_fill_manual(values= c("blue","brown","turquoise","yellow"))
+
+############# CMS label ################
+# paper: The consensus molecular subtypes of colorectal cancer
+Plot.df$cms_label
+ggplot(data=subset(Plot.df, !is.na(cms_label)), aes(x = dynamicColors, fill = cms_label)) + 
+  geom_bar(position = "fill") + theme_minimal()+
+  scale_fill_manual(values= alpha(c("#999999", "#E69F00", "#56B4E9","#76EE00","#9A32CD"),0.6)) # transparency

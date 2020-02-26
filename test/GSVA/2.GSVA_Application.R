@@ -1,5 +1,5 @@
 #### 2.Application.R
-### Loading data
+### 2.Loading data
 library(GSEABase)
 BiocManager::install("GSVAdata")
 library(GSVAdata)
@@ -16,7 +16,9 @@ library(GSVA)
 cacheDir <- system.file("extdata", package="GSVA")
 cachePrefix <- "cache4vignette_"
 file.remove(paste(cacheDir, list.files(cacheDir, pattern=cachePrefix), sep="/"))
-# Loading data
+
+### 2.Functional enrichment
+# 1) Filter
 data(leukemia)
 leukemia_eset
 head(pData(leukemia_eset))
@@ -31,6 +33,9 @@ cache(leukemia_es <- gsva(leukemia_filtered_eset, c2BroadSets,parallel.sz=10,
                            min.sz=10, max.sz=500, verbose=TRUE),
        dir=cacheDir, prefix=cachePrefix)
 
+leukemia_es
+assayData(leukemia_es)
+# 2) DE of Gene sets
 adjPvalueCutoff <- 0.001
 logFCcutoff <- log2(2)
 design <- model.matrix(~ factor(leukemia_es$subtype))
@@ -42,7 +47,22 @@ DEgeneSets <- topTable(fit, coef="MLLvsALL", number=Inf,
                           p.value=adjPvalueCutoff, adjust="BH")
 res <- decideTests(fit, p.value=adjPvalueCutoff)
 summary(res)
+# When we carry out the corresponding differential expression analysis at gene level:
+# 3) DE 0f genes
+logFCcutoff <- log2(2)
+design <- model.matrix(~ factor(leukemia_eset$subtype))
+colnames(design) <- c("ALL", "MLLvsALL")
+fit <- lmFit(leukemia_filtered_eset, design)
+fit <- eBayes(fit)
+allGenes <- topTable(fit, coef="MLLvsALL", number=Inf)
+DEgenes <- topTable(fit, coef="MLLvsALL", number=Inf,
+                      p.value=adjPvalueCutoff, adjust="BH", lfc=logFCcutoff)
+res <- decideTests(fit, p.value=adjPvalueCutoff, lfc=logFCcutoff)
+summary(res)
 
+# 4) Plotting
+#### DE genessets 
+pheatmap::pheatmap(leukemia_es[rownames(DEgeneSets),])
 
 
 
