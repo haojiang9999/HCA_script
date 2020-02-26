@@ -76,3 +76,16 @@ git push -u origin master
 ```
 
 ```
+10、Add another folder
+```
+git init  
+
+cd /home/jianghao/jupyter_nb
+git add ./Myjobs_Jupyter/
+git commit -m "My HCA jupyter script"
+git stash  # wanted to keep the change
+git pull --rebase origin master
+git commit -m "My HCA jupyter script Update"
+git stash pop  # After pulling, you would then do and your changes would be reapplied.
+git push -u origin master
+```
