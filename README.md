@@ -75,11 +75,10 @@ git stash pop  # After pulling, you would then do and your changes would be reap
 git push -u origin master
 ```
 
-```
+
 10、Add another folder
 ```
 git init  
-
 cd /home/jianghao/jupyter_nb
 git add ./Myjobs_Jupyter/
 git commit -m "My HCA jupyter script"
