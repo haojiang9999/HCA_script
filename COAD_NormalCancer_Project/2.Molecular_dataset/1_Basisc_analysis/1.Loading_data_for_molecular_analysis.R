@@ -6,6 +6,6 @@ dynamicColors <- Cluster.20200201.V7.Tumor$dynamicColors
 Cluster.df <- cbind(cutree.res,dynamicColors) 
 Cluster.df <- as.data.frame(Cluster.df)
 Cluster.df$rownames <- rownames(Cluster.df)
-## 2)
+
 
 

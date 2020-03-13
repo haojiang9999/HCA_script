@@ -19,7 +19,10 @@ TCGA.cancer.types <- names(table(phenotype_sp$cancer.type.abbreviation))
 #### 3. Read gencode.v23.annotation.gene.probemap ####
 geneAnnoFilePath <- "/stor/jianghao/Xena/TCGA_Pan_Cancer/gene_expression_RNAseq/TOIL_RSEM_norm_count/hugo_gencode_good_hg38_v23comp_probemap"
 gencode.v23.annotation <- read.table(geneAnnoFilePath)
-#### 4.Generate Xena_TCGA_copynumber_gene_gistic2_thresholded_dataset ####
+#### 4.Metadata
+library(jsonlite)
+gistic2.thresholded.metadata <- read_json("/stor/jianghao/Xena/TCGA_Pan_Cancer/Copy_number/gene_level_copy_number_gistic2_thresholded_n_10845/Gistic2_CopyNumber_Gistic2_all_thresholded.by_genes.json")
+#### 5.Generate Xena_TCGA_copynumber_gene_gistic2_thresholded_dataset ####
 #i="ACC"
 
 for(i in TCGA.cancer.types){
@@ -37,8 +40,9 @@ for(i in TCGA.cancer.types){
   ## Step4 Biuld TCGA data sets
   TCGA_UCSC_gene_gistic2_thresholded <- list(gene_copynumber_gistic2_thresholded = TCGA_RSEM_gene,
                              pheno = TCGA.pheno.exp,
-                             gencode.v23.annotation = gencode.v23.annotation)
-  names(TCGA_UCSC_gene_gistic2_thresholded)<-c(paste0(i,".gene.copynumber.gistic2.thresholded"),pheno = paste0(i,".pheno"), "gencode.v23.annotation")
+                             gencode.v23.annotation = gencode.v23.annotation,
+                             gistic2.thresholded.metadata = gistic2.thresholded.metadata)
+  names(TCGA_UCSC_gene_gistic2_thresholded)<-c(paste0(i,".gene.copynumber.gistic2.thresholded"),pheno = paste0(i,".pheno"), "gencode.v23.annotation", "gistic2.thresholded.metadata")
   saveRDS(TCGA_UCSC_gene_gistic2_thresholded, file = paste0(i,"_UCSC_gene_gistic2_thresholded_dataset.rds"))
 }
 

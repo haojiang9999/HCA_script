@@ -12,7 +12,7 @@ Epigenetic_Silencing_Calls <- read.csv("Table_S7_Epigenetic_Silencing_Calls_Figu
 Epigenetic_Silencing_Calls[1:5,1:5]
 colnames(Epigenetic_Silencing_Calls)<- paste0("TCGA.",colnames(Epigenetic_Silencing_Calls))
 Epigenetic_Silencing_Calls[1:5,1:5]
-
+rownames(Epigenetic_Silencing_Calls)
 ## 2.Seperate the data
 ## How many cancer types
 table(GI_Adenocarcinomas_Characteristics$TCGA.Project.Code)
