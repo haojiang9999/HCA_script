@@ -14,5 +14,6 @@ cutree.res <- cutree(hclust.Res, k = 4)
 library(WGCNA)
 dynamicColors = labels2colors(cutree.res) # convert label to color
 Cluster.20200201.V7.Tumor <- list(cutree.res = cutree.res,
-                                  dynamicColors = dynamicColors)
+                                  dynamicColors = dynamicColors,
+                                  hclust.Res = hclust.Res)
 saveRDS(Cluster.20200201.V7.Tumor, file = "Cluster.20200201.V7.Tumor.rds")

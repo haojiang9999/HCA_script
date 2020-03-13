@@ -46,6 +46,7 @@ allGeneSets <- topTable(fit, coef="MLLvsALL", number=Inf)
 DEgeneSets <- topTable(fit, coef="MLLvsALL", number=Inf,
                           p.value=adjPvalueCutoff, adjust="BH")
 res <- decideTests(fit, p.value=adjPvalueCutoff)
+
 summary(res)
 # When we carry out the corresponding differential expression analysis at gene level:
 # 3) DE 0f genes
