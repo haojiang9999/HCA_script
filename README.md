@@ -66,6 +66,7 @@ $ git push -u origin master
 9、Add all R script in a folder
 ```
 ### Need to convert file location to ""
+cd /data8t_4/JH/MyJobs
 find ./ -name *.R|awk '{ print "\""$0"\""}'|xargs git add
 git commit -m "My HCA R script Update"
 git stash  # wanted to keep the change
