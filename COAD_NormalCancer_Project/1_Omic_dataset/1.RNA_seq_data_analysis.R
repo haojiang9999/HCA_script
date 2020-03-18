@@ -44,6 +44,7 @@ keep <- filterByExpr(dge, design.expr)
 dge <- dge[keep,,keep.lib.sizes=FALSE]
 ## Voom normalization for RNA-seq data
 v <- voom(dge, design.expr,plot=TRUE)
+saveRDS(v$E,file = "2020_3_14_Omic_COAD_RNAexp_voom_log2.rds")
 ## Normalized Log2 transformed expression data
 hist(v$E)
 boxplot(v$E)

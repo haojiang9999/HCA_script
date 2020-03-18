@@ -30,6 +30,9 @@ scReference.list.CV3500 <- lapply(scReference.list.V8, function(x){
 scReference.list.CV3000 <- lapply(scReference.list.V8, function(x){
   TopCV(x, TopN = 3000, MARGIN = 1)
 })
+scReference.list.CV2600 <- lapply(scReference.list.V8, function(x){
+  TopCV(x, TopN = 2600, MARGIN = 1)
+})
 scReference.list.CV2500 <- lapply(scReference.list.V8, function(x){
   TopCV(x, TopN = 2500, MARGIN = 1)
 })
@@ -58,6 +61,10 @@ log10.scReference.list.CV.3000 <- lapply(scReference.list.CV3000, function(x){
   log10.x <- log10(x+1)
   return(log10.x)
 })
+log10.scReference.list.CV.2600 <- lapply(scReference.list.CV2600, function(x){
+  log10.x <- log10(x+1)
+  return(log10.x)
+})
 log10.scReference.list.CV.2500 <- lapply(scReference.list.CV2500, function(x){
   log10.x <- log10(x+1)
   return(log10.x)
@@ -72,6 +79,7 @@ scReference.log10.CV.V8 <- list(scReference.list.log10.CV8000 = log10.scReferenc
                                 scReference.list.log10.CV4000 = log10.scReference.list.CV.4000,
                                 scReference.list.log10.CV3500 = log10.scReference.list.CV.3500,
                                 scReference.list.log10.CV3000 = log10.scReference.list.CV.3000,
+                                scReference.list.log10.CV2600 = log10.scReference.list.CV.2600,
                                 scReference.list.log10.CV2500 = log10.scReference.list.CV.2500,
                                 scReference.list.log10.CV2000 = log10.scReference.list.CV.2000)
 saveRDS(scReference.log10.CV.V8, file = "2020_2_11_scReferenceV8.log10.CV.rds")
