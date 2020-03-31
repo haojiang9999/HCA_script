@@ -56,7 +56,11 @@ Trans.Rang1.CV2500.Normalized[grep("Fetal", cellTypesName),]<- base::apply(Trans
   (x-min(x))/(max(x)-min(x))
 })
 ## 3) save result
-saveRDS(Trans.Rang1.CV2500.Normalized, file = "Cor.merged.V8.CV2500.scaled.Twice.dataset.rds")
+Trans.Rang1.CV2500.Normalized.dataset <- list(Trans.Rang1.CV2500.Normalized = Trans.Rang1.CV2500.Normalized,
+                                      COAD.pheno = COAD.pheno)
+saveRDS(Trans.Rang1.CV2500.Normalized.dataset, file = "Cor.merged.V8.CV2500.scaled.Twice.dataset.rds")
+
+
 
 ### 6.Distance calculation
 #Trans.Rang1.CV2500.Normalized

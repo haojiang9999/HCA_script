@@ -89,10 +89,13 @@ pheatmap::pheatmap(COAD.miRNA.scaled[rownames(miRNA.turquoise),],annotation_col 
 
 
 
-
-
-
-
+### 9) Export results
+miRNA.blue.all <- topTable(fit.miRNA.2, num=Inf, coef="blue - (brown + turquoise)/2")
+miRNA.brown.all <- topTable(fit.miRNA.2, num=Inf, coef="brown - (blue + turquoise)/2")
+miRNA.turquoise.all <- topTable(fit.miRNA.2, num=Inf, coef="turquoise - (brown + blue)/2")
+write.csv(miRNA.blue.all, file = "miRNA.blue.all.csv")
+write.csv(miRNA.brown.all, file = "miRNA.brown.all.csv")
+write.csv(miRNA.turquoise.all, file = "miRNA.turquoise.all.csv")
 
 
 

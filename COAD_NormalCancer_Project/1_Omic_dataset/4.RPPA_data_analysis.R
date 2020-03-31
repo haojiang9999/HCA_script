@@ -81,3 +81,11 @@ pheatmap::pheatmap(COAD.RPPA.scaled[rownames(RPPA.brown),],annotation_col = pDat
 pheatmap::pheatmap(COAD.RPPA.scaled[rownames(RPPA.turquoise),],annotation_col = pData(COAD.RPPA.set)[,1:2],
                    main = "RPPA_turquoise VS orthers",annotation_colors = ann_colors)
 
+### 8) Export tables
+RPPA.blue.all <- topTable(fit.RPPA.2, num=Inf, coef="blue - (brown + turquoise)/2")
+RPPA.brown.all <- topTable(fit.RPPA.2, num=Inf, coef="brown - (blue + turquoise)/2")
+RPPA.turquoise.all <- topTable(fit.RPPA.2, num=Inf, coef="turquoise - (brown + blue)/2")
+
+write.csv(RPPA.blue.all, file = "RPPA.blue.all.csv")
+write.csv(RPPA.brown.all, file = "RPPA.brown.all.csv")
+write.csv(RPPA.turquoise.all, file = "RPPA.turquoise.all.csv")

@@ -13,18 +13,39 @@ COAD.ExpressionSet <- ExpressionSet(assayData=expr.sub,phenoData=Cluster.df.sub)
 library(GSVA)
 COAD.h.all.v7.0 <- gsva(exprs(COAD.ExpressionSet), MSigDB_gmt_V7_symbols$h.all.v7.0.symbols.gmt,
                         parallel.sz=10,min.sz=10, max.sz=500, verbose=TRUE)
+
+COAD.c1.all.v7.0 <- gsva(exprs(COAD.ExpressionSet), MSigDB_gmt_V7_symbols$c1.all.v7.0.symbols.gmt,
+                         parallel.sz=10,min.sz=10, max.sz=500, verbose=TRUE)
+dim(COAD.c1.all.v7.0)
+
 COAD.c2.all.v7.0 <- gsva(exprs(COAD.ExpressionSet), MSigDB_gmt_V7_symbols$c2.all.v7.0.symbols.gmt,
                          parallel.sz=10,min.sz=10, max.sz=500, verbose=TRUE)
 dim(COAD.c2.all.v7.0)
+
+COAD.c3.all.v7.0 <- gsva(exprs(COAD.ExpressionSet), MSigDB_gmt_V7_symbols$c3.all.v7.0.symbols.gmt,
+                         parallel.sz=10,min.sz=10, max.sz=500, verbose=TRUE)
+dim(COAD.c3.all.v7.0)
+
+COAD.c4.all.v7.0 <- gsva(exprs(COAD.ExpressionSet), MSigDB_gmt_V7_symbols$c4.all.v7.0.symbols.gmt,
+                         parallel.sz=10,min.sz=10, max.sz=500, verbose=TRUE)
+dim(COAD.c4.all.v7.0)
+
 COAD.c5.all.v7.0 <- gsva(exprs(COAD.ExpressionSet), MSigDB_gmt_V7_symbols$c5.all.v7.0.symbols.gmt,
                          parallel.sz=10,min.sz=10, max.sz=500, verbose=TRUE)
 dim(COAD.c5.all.v7.0)
 COAD.c6.all.v7.0 <- gsva(exprs(COAD.ExpressionSet), MSigDB_gmt_V7_symbols$c6.all.v7.0.symbols.gmt,
                          parallel.sz=10,min.sz=10, max.sz=500, verbose=TRUE)
 dim(COAD.c6.all.v7.0)
+COAD.c7.all.v7.0 <- gsva(exprs(COAD.ExpressionSet), MSigDB_gmt_V7_symbols$c7.all.v7.0.symbols.gmt,
+                         parallel.sz=10,min.sz=10, max.sz=500, verbose=TRUE)
+dim(COAD.c7.all.v7.0)
 
 ### 3)Save the data
 saveRDS(COAD.h.all.v7.0, file = "COAD.GSVA.h.all.v7.0.rds")
+saveRDS(COAD.c1.all.v7.0, file = "COAD.GSVA.c1.all.v7.0.rds")
 saveRDS(COAD.c2.all.v7.0, file = "COAD.GSVA.c2.all.v7.0.rds")
+saveRDS(COAD.c3.all.v7.0, file = "COAD.GSVA.c3.all.v7.0.rds")
+saveRDS(COAD.c4.all.v7.0, file = "COAD.GSVA.c4.all.v7.0.rds")
 saveRDS(COAD.c5.all.v7.0, file = "COAD.GSVA.c5.all.v7.0.rds")
 saveRDS(COAD.c6.all.v7.0, file = "COAD.GSVA.c6.all.v7.0.rds")
+saveRDS(COAD.c7.all.v7.0, file = "COAD.GSVA.c7.all.v7.0.rds")

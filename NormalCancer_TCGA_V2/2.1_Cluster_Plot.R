@@ -11,6 +11,7 @@ source("/data8t_4/JH/MyJobs/1_R_script/TCGA_plot/TCGAClusterSurv.R")
 x <- TCGAClusterSurv(Input.tb = Trans.Rang1.cv2500_colon_InNormal, hclust.res = hclust.Res, Col.anno = COAD.pheno[TumorID,], k = 4)
 ### Cut tree resault
 cutree.res <- cutree(hclust.Res, k = 4)
+table(cutree.res)
 library(WGCNA)
 dynamicColors = labels2colors(cutree.res) # convert label to color
 Cluster.20200201.V7.Tumor <- list(cutree.res = cutree.res,

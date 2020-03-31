@@ -123,3 +123,16 @@ ggplot2_boxPlot_JH(df = MergeTable.Immune.Gene,groupInfo = "dynamicColors",
                    character = "PDCD1LG2",
                    values=c("blue","brown","turquoise","yellow")
 )
+## New gene plot
+MergeTable.Immune.Gene.clean <- MergeTable.Immune.Gene[,-c(1,3,4)]
+MergeTable.Immune.Gene.clean <- MergeTable.Immune.Gene.clean[complete.cases(MergeTable.Immune.Gene.clean), ]
+table(MergeTable.Immune.Gene.clean$dynamicColors)
+library(reshape2)
+MergeTable.Immune.Gene.clean.m <- melt(MergeTable.Immune.Gene.clean,id.vars='dynamicColors')
+ggplot(MergeTable.Immune.Gene.clean.m, aes(x=dynamicColors, y=value, color=variable)) +
+  geom_boxplot(notch=T) +
+  scale_color_manual(values=c( "#E69F00", "#56B4E9"))+
+  theme_classic()+
+  theme(axis.line = element_line(colour = 'black', size = 1.5),axis.ticks = element_line(colour = "black", size = 1.5),
+        axis.ticks.length=unit(.5, "cm"),legend.key.size =unit(3,"line"),axis.text.x = element_text(angle = 45))+
+  labs(title = "T cells",subtitle =sampleSize)

@@ -15,6 +15,9 @@ table(Cluster.df$dynamicColors)
 ### 2.Prepare group labels
 Trans.Rang1.CV2500.Normalized.tumor.ordered <- Trans.Rang1.CV2500.Normalized.tumor[,Cluster.df$rownames]
 ClusterRes <- as.numeric(Cluster.df$dynamicColors)
+
+pheatmap::pheatmap(Trans.Rang1.CV2500.Normalized.tumor.ordered,cluster_rows = F,
+                   annotation_col = Cluster.df[,-3])
 ## original results ##
 require("cluster")
 Trans.Rang1.CV2500.Normalized.tumor.ordered.dist <- dist(t(Trans.Rang1.CV2500.Normalized.tumor.ordered), method="euclidean")
